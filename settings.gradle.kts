@@ -11,9 +11,10 @@ pluginManagement {
     plugins {
         kotlin("android") version kotlinJvmVersion
         kotlin("multiplatform") version kotlinJvmVersion
+        kotlin("plugin.serialization") version kotlinJvmVersion
         id("com.android.application") version androidPluginVersion
         id("com.android.library") version androidPluginVersion
-//        id("dev.icerock.mobile.multiplatform-resources") version multiplatformResourcesPlugin
+        id("dev.icerock.mobile.multiplatform-resources") version multiplatformResourcesPlugin
     }
 }
 

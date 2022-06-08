@@ -2,8 +2,9 @@
 
 plugins {
     kotlin("multiplatform")
+    kotlin("plugin.serialization")
     id("com.android.library")
-//    id("dev.icerock.mobile.multiplatform-resources")
+    id("dev.icerock.mobile.multiplatform-resources")
 }
 kotlin {
     android()
@@ -17,16 +18,37 @@ kotlin {
             baseName = "shared_handbook"
         }
     }
+    targets.withType<org.jetbrains.kotlin.gradle.plugin.mpp.KotlinNativeTarget> {
+        binaries.all {
+            val mode = System.getenv("DEBUG_MODE") ?: "enable"
+            freeCompilerArgs = freeCompilerArgs + "-Xadd-light-debug=$mode"
+        }
+    }
+
+    val ktorVersion: String by project
 
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation("dev.icerock.moko:resources:0.20.0")
+                api("io.ktor:ktor-serialization-kotlinx-json:$ktorVersion")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation("dev.icerock.moko:resources-test:0.20.0")
             }
         }
-        val androidMain by getting
-        val androidTest by getting
+        val androidMain by getting {
+            dependencies {
+                implementation("dev.icerock.moko:resources-compose:0.20.0")
+            }
+        }
+        val androidTest by getting {
+            dependsOn(commonTest)
+            dependsOn(androidMain)
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -65,6 +87,9 @@ val packForXcode by tasks.creating(Sync::class) {
 tasks.getByName("build").dependsOn(packForXcode)
 
 /************************************************/
+multiplatformResources {
+    multiplatformResourcesPackage = "com.jolley71717.csidhandbook.json"
+}
 
 android {
     compileSdk = 32
@@ -73,4 +98,9 @@ android {
         minSdk = 23
         targetSdk = 32
     }
+}
+
+tasks.getByName("iosX64ProcessResources") {
+    dependsOn("generateMRcommonMain")
+    dependsOn("generateMRiosX64Main")
 }
