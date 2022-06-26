@@ -17,7 +17,8 @@ class JsonTest {
         val categories = FoodJson.categories
         val foodWrapper = json.decodeFromString<FoodWrapper>(foodList2.json).foodItems.first()
 
-        assertEquals(1.309, foodWrapper.starch?.let { (it * 1000).roundToInt() / 1000.0 } ?: 0F, "yeet")
+        assertEquals(1.309, foodWrapper.starch.let { (it * 1000).roundToInt() / 1000.0 }, "yeet")
+        assertEquals("Dark chocolate bar, with almonds", foodWrapper.getFoodDescription(), "yeet")
         assertEquals("FOOD_CANDY", categories[0])
     }
 }

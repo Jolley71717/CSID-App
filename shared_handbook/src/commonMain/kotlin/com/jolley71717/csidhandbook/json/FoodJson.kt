@@ -1,8 +1,6 @@
 package com.jolley71717.csidhandbook.json
 
 import com.jolley71717.csidhandbook.models.FoodJsonWrapper
-import com.jolley71717.csidhandbook.models.FoodWrapper
-import kotlin.jvm.JvmField
 import kotlin.jvm.JvmStatic
 
 expect object FoodJson {
@@ -20,5 +18,4 @@ expect object FoodJson {
     @JvmStatic val FOOD_SOUPS: FoodJsonWrapper
     @JvmStatic val FOOD_VEGETABLES: FoodJsonWrapper
     @JvmStatic val categories: List<String>
-
 }

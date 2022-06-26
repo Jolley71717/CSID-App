@@ -21,5 +21,6 @@ data class SmallFoodItem(
     val starch: Float = 0.00F,
     val type: String = ""
 ) {
-    fun foodDescription() = description
+    fun getFoodDescription() = description
+    fun getFoodType() = type
 }

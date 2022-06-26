@@ -14,12 +14,12 @@ struct FoodListRow: View {
     var foodItem: SmallFoodItem
     var body: some View {
         HStack {
-            Text(foodItem.foodDescription())
-            Spacer()
-            Text(foodItem.sucrose.description)
-            Text(foodItem.glucose.description)
+            Text(foodItem.getFoodDescription()).frame(width: 200, alignment: .leading)
+            Text(foodItem.portionSizeUnit)
+            Text(foodItem.sucrose.description).frame(width: 60, height: 0.0)
+            Text(foodItem.glucose.description).frame(width: 75)
             
-        }
+        }.frame(height: 65)
     }
 }
 
