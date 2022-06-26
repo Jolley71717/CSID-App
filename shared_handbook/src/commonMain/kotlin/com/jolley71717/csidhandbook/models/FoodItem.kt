@@ -2,6 +2,9 @@ package com.jolley71717.csidhandbook.models
 
 import kotlinx.serialization.Serializable
 
+/**
+ * These are from the US Government site
+ */
 @Serializable
 data class FoodList(
     val FoundationFoods: List<FoodItem> = emptyList()

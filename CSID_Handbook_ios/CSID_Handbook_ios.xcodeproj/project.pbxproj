@@ -11,6 +11,9 @@
 		058557D9273AAEEB004C7B11 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		48C3D13E2850599C000DD212 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C3D13D2850599C000DD212 /* CircleImage.swift */; };
+		48C3D1412851BD03000DD212 /* ModelExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C3D1402851BD03000DD212 /* ModelExtensions.swift */; };
+		48C3D1432851BE75000DD212 /* FoodListRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C3D1422851BE75000DD212 /* FoodListRow.swift */; };
+		48C3D1452851C944000DD212 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48C3D1442851C944000DD212 /* ModelData.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +35,9 @@
 		058557D8273AAEEB004C7B11 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		48C3D13D2850599C000DD212 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CircleImage.swift; path = ../CircleImage.swift; sourceTree = "<group>"; };
+		48C3D1402851BD03000DD212 /* ModelExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelExtensions.swift; sourceTree = "<group>"; };
+		48C3D1422851BE75000DD212 /* FoodListRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodListRow.swift; sourceTree = "<group>"; };
+		48C3D1442851C944000DD212 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* CSID_Handbook_ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CSID_Handbook_ios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -56,6 +62,23 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		48C3D13F2851BCEF000DD212 /* models */ = {
+			isa = PBXGroup;
+			children = (
+				48C3D1402851BD03000DD212 /* ModelExtensions.swift */,
+				48C3D1442851C944000DD212 /* ModelData.swift */,
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		48C3D1462851D103000DD212 /* FoodLists */ = {
+			isa = PBXGroup;
+			children = (
+				48C3D1422851BE75000DD212 /* FoodListRow.swift */,
+			);
+			path = FoodLists;
+			sourceTree = "<group>";
+		};
 		7555FF72242A565900829871 = {
 			isa = PBXGroup;
 			children = (
@@ -76,12 +99,14 @@
 		7555FF7D242A565900829871 /* CSID_Handbook_ios */ = {
 			isa = PBXGroup;
 			children = (
+				48C3D13F2851BCEF000DD212 /* models */,
 				48C3D13D2850599C000DD212 /* CircleImage.swift */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
 				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
+				48C3D1462851D103000DD212 /* FoodLists */,
 			);
 			path = CSID_Handbook_ios;
 			sourceTree = "<group>";
@@ -185,9 +210,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48C3D1432851BE75000DD212 /* FoodListRow.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				48C3D1412851BD03000DD212 /* ModelExtensions.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				48C3D13E2850599C000DD212 /* CircleImage.swift in Sources */,
+				48C3D1452851C944000DD212 /* ModelData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
