@@ -12,10 +12,12 @@ import shared_handbook
 struct FoodsListView: View {
     @EnvironmentObject var modelData: ModelData
     @State private var showFavoritesOnly = false
+    @State private var searchString = ""
     
     var filteredFoods: [SmallFoodItem] {
         modelData.allTheFoods.filter { food in
-            (!showFavoritesOnly || food.isFavorite)
+            (!showFavoritesOnly || food.isFavorite) &&
+            (searchString == "" || food.getFoodDescription().localizedCaseInsensitiveContains(searchString))
         }
     }
     
@@ -23,10 +25,15 @@ struct FoodsListView: View {
         
         NavigationView {
             VStack {
-                Toggle(isOn: $showFavoritesOnly) {
-                    Text("Favorites Only").frame(alignment: .trailing)
-                }.padding()
-                    .frame(maxWidth: 300, maxHeight: 50, alignment: .trailing)
+                HStack {
+                    Toggle(isOn: $showFavoritesOnly) {
+                        Text("Favorites Only").frame(alignment: .trailing)
+                    }.padding()
+                        .frame(maxWidth: 200, maxHeight: 50, alignment: .trailing)
+                    
+                    TextField("Filter", text: $searchString)
+                }
+                
                 HStack {
                     Spacer().frame(minWidth: 20)
                     Text("Description").frame(minWidth: 90, alignment: .center)
