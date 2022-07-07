@@ -10,20 +10,31 @@ import SwiftUI
 import shared_handbook
 
 struct FoodDetailView: View {
+    @EnvironmentObject var modelData: ModelData
     var food: SmallFoodItem
+    
+    var foodIndex: Int {
+        modelData.allTheFoods.firstIndex(where: {$0.id == food.id})!
+    }
     
     var body: some View {
         ScrollView {
+            Text(food.getFoodDescription())
+            .font(.title)
+            .frame(maxWidth: .infinity)
+            .fixedSize(horizontal: false, vertical: true)
             HStack {
                 Text("Type: ")
                 Text(food.getFoodType())
                     .font(.title2)
             }
+            HStack {
+                FavoriteButton(isSet: $modelData.allTheFoods[foodIndex].isFavorite)
+            }
             
             Group {
                 HStack {
-                    Text("Portion Size")
-                        .padding()
+                    Text("Portion Size:")
                     Text(food.portionSizeUnit)
                 }
                 HStack {
@@ -32,7 +43,9 @@ struct FoodDetailView: View {
                     // Add configurable alerts based on thresholds of certain items and amounts
                     Text(food.portionSizeAmount.description)
                 }
-            }
+            }.padding()
+            
+            // todo convert all this stuff into a list where I take all the list items and pass it into an object that does all this crap
             
             Group {
                 HStack {
@@ -42,7 +55,7 @@ struct FoodDetailView: View {
                         .truncate(places: 2)
                         .description
                     )
-                }
+                }.frame(maxWidth: 500)
                 HStack {
                     Text("Glucose: ")
                     Text(food.glucose
@@ -88,10 +101,6 @@ struct FoodDetailView: View {
         
         }
         .padding()
-        .navigationTitle(
-            Text(food.getFoodDescription())
-            .font(.title)
-        )
         .navigationBarTitleDisplayMode(.inline)
         
     }
@@ -110,7 +119,14 @@ struct FoodDetailView: View {
 }
 
 struct FoodDetailView_Previews: PreviewProvider {
+    static let modelData = ModelData()
     static var previews: some View {
-        FoodDetailView(food: candies[0])
+        ForEach(["iPhone SE (3rd generation)", "iPhone 12 Pro Max"], id: \.self) { deviceName in
+            FoodDetailView(food: modelData.allTheFoods[0])
+                .previewDevice(PreviewDevice(rawValue: deviceName))
+                .previewDisplayName(deviceName)
+            
+        }
+        
     }
 }

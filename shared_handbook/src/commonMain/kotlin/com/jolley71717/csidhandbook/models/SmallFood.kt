@@ -19,8 +19,13 @@ data class SmallFoodItem(
     val lactose: Float = 0.00F,
     val maltose: Float = 0.00F,
     val starch: Float = 0.00F,
-    val type: String = ""
+    val type: String = "",
+    var isFavorite: Boolean = false
 ) {
     fun getFoodDescription() = description
     fun getFoodType() = type
+    fun setIsFavoriteAndReturn(value: Boolean): SmallFoodItem {
+        isFavorite = value
+        return this
+    }
 }
