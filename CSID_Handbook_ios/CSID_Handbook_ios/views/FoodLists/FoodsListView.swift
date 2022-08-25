@@ -17,7 +17,7 @@ struct FoodsListView: View {
     var filteredFoods: [SmallFoodItem] {
         modelData.allTheFoods.filter { food in
             (!showFavoritesOnly || food.isFavorite) &&
-            (searchString == "" || food.getFoodDescription().localizedCaseInsensitiveContains(searchString))
+            multiFilter(food, searchText: searchString)
         }
     }
     
@@ -25,13 +25,14 @@ struct FoodsListView: View {
         
         NavigationView {
             VStack {
+                Toggle(isOn: $showFavoritesOnly) {
+                    Text("Favorites Only").frame(alignment: .trailing)
+                }.padding()
+                    .frame(maxWidth: 200, maxHeight: 50, alignment: .trailing)
                 HStack {
-                    Toggle(isOn: $showFavoritesOnly) {
-                        Text("Favorites Only").frame(alignment: .trailing)
-                    }.padding()
-                        .frame(maxWidth: 200, maxHeight: 50, alignment: .trailing)
-                    
-                    TextField("Filter", text: $searchString)
+                    TextField("Filter", text: $searchString).textFieldStyle(.roundedBorder)
+                        .frame(width: 200)
+                    FilterButton(modelData: modelData)
                 }
                 
                 HStack {

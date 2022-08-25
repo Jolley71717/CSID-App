@@ -18,6 +18,7 @@ extension FoodWrapper {
 
 extension SmallFoodItem : Identifiable {}
 
+
 extension Float {
     func truncate(places : Int)-> Float {
         return Float(floor(pow(10.0, Float(places)) * self)/pow(10.0, Float(places)))

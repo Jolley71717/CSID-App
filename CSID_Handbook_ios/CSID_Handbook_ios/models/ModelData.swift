@@ -25,6 +25,7 @@ final class ModelData: ObservableObject {
     @Published var soups: [SmallFoodItem] = load(FoodJson().FOOD_SOUPS)
     @Published var vegetables: [SmallFoodItem] = load(FoodJson().FOOD_VEGETABLES)
     @Published var allTheFoods: [SmallFoodItem] = load([FoodJson().FOOD_CANDY, FoodJson().FOOD_COMMERCIAL_ENTREES, FoodJson().FOOD_DESSERTS, FoodJson().FOOD_EGGS, FoodJson().FOOD_FATS, FoodJson().FOOD_FRUIT, FoodJson().FOOD_GRAIN, FoodJson().FOOD_IMITATION_MILK, FoodJson().FOOD_MEAT, FoodJson().FOOD_MILK, FoodJson().FOOD_MISC, FoodJson().FOOD_SOUPS, FoodJson().FOOD_VEGETABLES])
+    @Published var searchFilters: [FoodFilter] = loadFilters(FoodJson().categories)
 }
 
 func load(_ foodWrapper: FoodJsonWrapper) -> [SmallFoodItem] {
@@ -33,4 +34,10 @@ func load(_ foodWrapper: FoodJsonWrapper) -> [SmallFoodItem] {
 
 func load(_ foodWrappers: [FoodJsonWrapper]) -> [SmallFoodItem] {
     return HelperFunctions().wrappersToFoodItems(foodWrappers: foodWrappers)
+}
+
+func loadFilters(_ foodCategories: [String]) -> [FoodFilter] {
+    return foodCategories.map { category in
+        FoodFilter(filterName: category, isEnabled: false, filterType: "Toggle")
+    }
 }

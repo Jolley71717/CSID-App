@@ -34,7 +34,9 @@ actual object FoodJson {
         ::FOOD_MISC.name,
         ::FOOD_SOUPS.name,
         ::FOOD_VEGETABLES.name
-    )
+    ).map { it.replace(FOOD_PREFIX, "") }
+
+    private const val FOOD_PREFIX = "FOOD_"
     private val jsonMapper = Json { ignoreUnknownKeys = true }
 
 }
